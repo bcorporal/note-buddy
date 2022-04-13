@@ -28,7 +28,22 @@ app.get('/', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-e
+// new note
+app.post('/api/notes', (req,res) => {
+    let newNote = req.body;
+    notes.push(newNote);
+    // adds id number to each note
+    let num = 1
+    notes.forEach((note) => {
+        note.id = num;
+        num++;
+        return notes;
+    })
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes))
+    res.json(newNote);
+   
+
+})
 
 
 app.use(express.json());
@@ -36,6 +51,12 @@ app.use(express.urlencoded({ extended:  true}));
 app.use(express.static('public'));
 
 
+
+
+
+app.listen(PORT, function() {
+    console.log('App listening on PORT: ' + PORT);
+  });
 
 
 // GIVEN a note-taking application
