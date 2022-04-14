@@ -1,4 +1,51 @@
-# note-buddy
+  ## Note Buddy
+
+  ## Description
+  Write and save notes on the go with Note Buddy. Organize thoughts and keep track of tasks.
+
+
+  ##Table of Contents
+  - [Installation](#installation)
+  - [Features](#features)
+  - [Languages](#languages)
+  - [License](#license)
+  - [Questions](#questions)
+
+
+
+  ## Installation
+  No install needed. Run this deployed link!
+  Click on the Write icon in the navigation at the top of the page
+  to enter a new note title and the note’s text in the right-hand column.
+
+  The new note is saved and appears in the left-hand column with the other existing notes.
+ 
+
+
+  ## Features
+  Save notes on the fly, Delete feature is in development.
+
+
+
+  ## Language(s)
+  HTML,Javascript
+  Dependencies include Express.js, Node, UUID, 
+
+
+
+  ## License
+  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+   
+
+
+
+  ## Questions
+  Any additional questions please reach out at https://github.com/bcorporal
+  [Click here to Email me](mailto:bcorporal@gmail.com)
+
+
+
+
 
 <!-- GIVEN a note-taking application
 WHEN I open the Note Taker
