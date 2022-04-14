@@ -31,7 +31,9 @@ https://user-images.githubusercontent.com/97717660/163486410-9c02a1b2-99c3-422b-
   ## Features
   Save notes/tasks on the fly, Delete feature is in development!
 
+<img width="950" alt="Screen Shot 2022-04-14 at 6 31 52 PM" src="https://user-images.githubusercontent.com/97717660/163488743-a82a928c-249f-4d53-9499-b4e2b65d9e29.png">
 
+<img width="953" alt="Screen Shot 2022-04-14 at 6 31 57 PM" src="https://user-images.githubusercontent.com/97717660/163488753-e8593212-5d05-4636-84ed-81e7797396b6.png">
 
   ## Language(s)
   HTML,Javascript
