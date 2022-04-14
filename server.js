@@ -19,16 +19,17 @@ app.use(express.urlencoded({ extended:  true}));
 
 app.use(express.static('public'));
 
+// route for index.html
+app.get('/', (req, res) =>
+res.sendFile(path.join(__dirname, './develop/public/index.html'))
+);
+
 
 // route for notes.html
 app.get('/notes', (req, res) =>
-res.sendFile(path.join(__dirname, '/public/notes.html'))
+res.sendFile(path.join(__dirname, './develop/public/notes.html'))
 );
 
-// route for index.html
-app.get('/', (req, res) =>
-res.sendFile(path.join(__dirname, '/public/index.html'))
-);
 
 // api route to retrieve notes saved
 app.get('/api/notes', (req, res) =>
@@ -48,7 +49,7 @@ app.post('/api/notes', (req, res) => {
         console.log(newNote)
         
         var allNotes = [...notes, newNote]
-        fs.readFile('/Develop/db/db.json', JSON.stringify(allNotes), err =>{
+        fs.writeFile('/Develop/db/db.json', JSON.stringify(allNotes), err =>{
             if(err) throw err;
             return true;
         })
