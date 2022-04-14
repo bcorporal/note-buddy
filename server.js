@@ -1,20 +1,25 @@
 // packages
 const express = require('express');
 const path = require('path');
+const uuid = require('uuid');
 const fs = require("fs");
-const path = require("path");
 
 
-const notes = require("./db/db.json");
+const notes = require("./Develop/db/db.json");
 
 // Port
 var PORT = process.env.PORT || 3001;
 const app = express();
 
+// middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended:  true}));
+app.use(express.static('public'));
+
 
 // route to retrieve notes saved
 app.get('/api/notes', (req, res) =>
-res.sendFile(path.join(__dirname, '/db/db.json'))
+res.sendFile(path.join(__dirname, '/Develop/db/db.json'))
 );
 
 
@@ -39,24 +44,14 @@ app.post('/api/notes', (req,res) => {
         num++;
         return notes;
     })
-    fs.writeFileSync('./db/db.json', JSON.stringify(notes))
+    fs.writeFileSync('./Develop/db/db.json', JSON.stringify(notes))
     res.json(newNote);
-   
-
 })
 
 
-app.use(express.json());
-app.use(express.urlencoded({ extended:  true}));
-app.use(express.static('public'));
-
-
-
-
-
 app.listen(PORT, function() {
-    console.log('App listening on PORT: ' + PORT);
-  });
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
+});
 
 
 // GIVEN a note-taking application
