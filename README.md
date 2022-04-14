@@ -14,7 +14,9 @@
 
 
   ## Installation
-  No install needed. Run this deployed link!
+  No install needed. Run this deployed link via Heroku! https://fierce-dawn-03721.herokuapp.com/
+  This is the code repo link https://github.com/bcorporal/note-buddy.git
+  
   Click on the Write icon in the navigation at the top of the page
   to enter a new note title and the note’s text in the right-hand column.
 
