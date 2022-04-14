@@ -22,6 +22,10 @@
  
 
 
+https://user-images.githubusercontent.com/97717660/163486410-9c02a1b2-99c3-422b-bc4c-7286ff5b1b0e.mp4
+
+
+
   ## Features
   Save notes on the fly, Delete feature is in development.
 
