@@ -16,25 +16,30 @@ const PORT = process.env.PORT || 3001;
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
-//  app.use(express.static('public'));
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static('../public'));
+// app.use(express.static(__dirname + '/public'));
+
+// app.use(express.static(__dirname, "../public"));
+
+
 // route for index.html
 app.get('/', (req, res) =>
-    res.sendFile(path.join(__dirname, '/Develop/public/index.html'))
+    res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
 
 // route for notes.html
 app.get('/notes', (req, res) =>
-    res.sendFile(path.join(__dirname, '/Develop/public/notes.html'))
+    res.sendFile(path.join(__dirname, '/public/notes.html'))
    
 );
 
 
 // api route to retrieve notes saved
 app.get('/api/notes', (req, res) =>
-    fs.readFile('Develop/db/db.json', 'utf8', (err, data) => {
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
         if (err) throw err;
         var notes = JSON.parse(data);
         res.json(notes);
@@ -42,7 +47,7 @@ app.get('/api/notes', (req, res) =>
     );
 
 app.post('/api/notes', (req, res) => {
-    fs.readFile('Develop/db/db.json', 'utf8', (err, data) => {
+    fs.readFile('db/db.json', 'utf8', (err, data) => {
         if (err) throw err;
         var notes = JSON.parse(data);
 
@@ -51,11 +56,11 @@ app.post('/api/notes', (req, res) => {
         console.log(newNote)
 
         var allNotes = [...notes, newNote]
-        fs.writeFile('Develop/db/db.json', JSON.stringify(allNotes), err => {
+        fs.writeFile('db/db.json', JSON.stringify(allNotes), err => {
             if (err) throw err;
             return true;
         })
-        fs.readFile('Develop/db/db.json', 'utf8', (err, data) => {
+        fs.readFile('/db/db.json', 'utf8', (err, data) => {
             if (err) throw err;
             var notes = JSON.parse(data);
             res.json(notes);
