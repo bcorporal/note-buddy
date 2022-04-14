@@ -2,14 +2,16 @@
 const express = require('express');
 const path = require('path');
 const uuid = require('uuid');
+const app = express();
 const fs = require("fs");
 
 
 const notes = require("./Develop/db/db.json");
+const { Console } = require('console');
 
 // Port
 var PORT = process.env.PORT || 3001;
-const app = express();
+
 
 // middleware
 app.use(express.json());
@@ -17,10 +19,41 @@ app.use(express.urlencoded({ extended:  true}));
 app.use(express.static('public'));
 
 
-// route to retrieve notes saved
+
+// api route to retrieve notes saved
 app.get('/api/notes', (req, res) =>
-res.sendFile(path.join(__dirname, '/Develop/db/db.json'))
+fs.readFile('/Develop/db/db.json', 'utf8', (err, data) =>{
+    if(err) throw err;
+    var notes = JSON.parse(data);
+    res.json(notes);
+})
 );
+
+app.post('/api/notes', (req, res) => {
+    fs.readFile('/Develop/db/db.json', 'utf8', (err, data) =>{
+        if(err) throw err;
+        var notes = JSON.parse(data);
+
+        var newNote = req.body;
+        newNote.id = uuid.v4();
+        console.log(newNote)
+        
+        var allNotes = [...notes, newNote]
+        fs.readFile('/Develop/db/db.json', JSON.stringify(allNotes), err =>{
+            if(err) throw err;
+            return true;
+        })
+    fs.readFile('/Develop/db/db.json', 'utf8', (err, data) =>{
+        if(err) throw err;
+        var notes = JSON.parse(data);
+        res.json(notes);
+    });
+});
+
+app.listen(PORT, function() {
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
+});
+
 
 
 // route for notes.html
@@ -32,6 +65,13 @@ res.sendFile(path.join(__dirname, '/public/notes.html'))
 app.get('/', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/index.html'))
 );
+
+
+
+
+
+
+
 
 // new note
 app.post('/api/notes', (req,res) => {
@@ -48,10 +88,6 @@ app.post('/api/notes', (req,res) => {
     res.json(newNote);
 })
 
-
-app.listen(PORT, function() {
-    console.log(`App listening at http://localhost:${PORT} 🚀`)
-});
 
 
 // GIVEN a note-taking application
